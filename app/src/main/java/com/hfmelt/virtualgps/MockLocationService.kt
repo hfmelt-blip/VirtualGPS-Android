@@ -5,7 +5,7 @@ import android.app.*
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.pm.ServiceInfo
-import android.location.Criteria
+import android.location.provider.ProviderProperties
 import android.location.Location
 import android.location.LocationManager
 import android.os.*
@@ -70,7 +70,7 @@ class MockLocationService : Service() {
             if (Build.VERSION.SDK_INT >= 29) startForeground(1, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION)
             else startForeground(1, notification)
             if (!providerAdded) {
-                manager.addTestProvider(LocationManager.GPS_PROVIDER, false, true, false, false, true, true, true, Criteria.POWER_LOW, Criteria.ACCURACY_FINE)
+                manager.addTestProvider(LocationManager.GPS_PROVIDER, false, true, false, false, true, true, true, ProviderProperties.POWER_USAGE_LOW, ProviderProperties.ACCURACY_FINE)
                 providerAdded = true
                 manager.setTestProviderEnabled(LocationManager.GPS_PROVIDER, true)
             }
